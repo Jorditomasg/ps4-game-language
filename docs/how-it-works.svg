@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420" role="img" aria-label="How Game Language works: the game asks for the system language, the plugin checks the config and region, and answers with the alternative language">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7a8bb0"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="420" rx="20" fill="#0f1b33"/>
+  <g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" fill="#ffffff">
+    <!-- Game -->
+    <rect x="40" y="140" width="220" height="140" rx="16" fill="#1d2d52" stroke="#3a5591"/>
+    <text x="150" y="190" font-size="22" font-weight="700" text-anchor="middle">Game</text>
+    <text x="150" y="220" font-size="15" text-anchor="middle" fill="#a9b8dc">UP0002-CUSA12345</text>
+    <text x="150" y="244" font-size="15" text-anchor="middle" fill="#a9b8dc">(Americas release)</text>
+
+    <!-- Plugin -->
+    <rect x="390" y="110" width="240" height="200" rx="16" fill="#2a2412" stroke="#e0a526"/>
+    <text x="510" y="150" font-size="22" font-weight="700" text-anchor="middle" fill="#f7d774">Game Language</text>
+    <text x="510" y="186" font-size="15" text-anchor="middle" fill="#e8dcb8">1. [CUSA12345] lang=… ?</text>
+    <text x="510" y="214" font-size="15" text-anchor="middle" fill="#e8dcb8">2. region UP: americas=auto</text>
+    <text x="510" y="242" font-size="15" text-anchor="middle" fill="#e8dcb8">es-ES → es-419</text>
+    <text x="510" y="282" font-size="13" text-anchor="middle" fill="#b8a77a">/data/GoldHEN/game_language.ini</text>
+
+    <!-- System -->
+    <rect x="760" y="140" width="200" height="140" rx="16" fill="#1d2d52" stroke="#3a5591"/>
+    <text x="860" y="190" font-size="22" font-weight="700" text-anchor="middle">PS4 system</text>
+    <text x="860" y="222" font-size="15" text-anchor="middle" fill="#a9b8dc">Language:</text>
+    <text x="860" y="246" font-size="15" text-anchor="middle" fill="#a9b8dc">Español (España)</text>
+
+    <!-- arrows -->
+    <g stroke="#7a8bb0" stroke-width="2.5" fill="none" marker-end="url(#arrow)">
+      <path d="M260 175 H385"/>
+      <path d="M630 175 H755"/>
+      <path d="M755 250 H635"/>
+      <path d="M385 250 H265"/>
+    </g>
+    <g font-size="13" fill="#c9d6f2" text-anchor="middle">
+      <text x="322" y="164">ParamGetInt(LANG)</text>
+      <text x="692" y="164">original call</text>
+      <text x="695" y="272">es-ES (3)</text>
+      <text x="322" y="272" fill="#f7d774" font-weight="700">es-419 (20)</text>
+    </g>
+
+    <text x="500" y="370" font-size="17" text-anchor="middle" fill="#c9d6f2">The game sees Latin American Spanish and loads its Spanish text and audio instead of falling back to English.</text>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+build/
+bin/
+*.pkg
+app/eboot.bin
+app/pkg.gp4
+app/sce_sys/param.sfo
+app/sce_sys/about/
+app/sce_module/
+app/assets/game_language.prx

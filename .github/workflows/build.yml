@@ -1,0 +1,59 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    # PkgTool.Core needs the libssl1.1/ICU setup that 22.04 still supports.
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Unit tests
+        run: make test
+
+      - uses: actions/checkout@v4
+        with:
+          repository: GoldHEN/GoldHEN_Plugins_SDK
+          path: sdk
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get install -y llvm lld
+          curl -sL https://github.com/illusion0001/OpenOrbis-PS4-Toolchain/releases/latest/download/toolchain.tar.gz | tar xz -C "$RUNNER_TEMP"
+          TOOLCHAIN="$RUNNER_TEMP/OpenOrbis/PS4Toolchain"
+          sudo dpkg -i "$TOOLCHAIN"/libssl1.1_*.deb
+          echo "OO_PS4_TOOLCHAIN=$TOOLCHAIN" >> "$GITHUB_ENV"
+          echo "GOLDHEN_SDK=$GITHUB_WORKSPACE/sdk" >> "$GITHUB_ENV"
+
+      - name: Build GoldHEN SDK
+        run: make -C sdk
+
+      - name: Build plugin and package
+        run: make
+
+      - name: Collect files
+        run: |
+          mkdir dist
+          cp app/IV0000-GLNG00001_00-GAMELANGUAGE0000.pkg dist/GameLanguage.pkg
+          cp plugin/bin/game_language.prx dist/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: game-language
+          path: dist/*
+          if-no-files-found: error
+
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/* --generate-notes
