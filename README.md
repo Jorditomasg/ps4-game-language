@@ -10,6 +10,8 @@ PS4 games from Europe usually include *Español (España)* and games from Americ
 
 - [GoldHEN](https://github.com/GoldHEN/GoldHEN) with the plugin loader on: GoldHEN settings → Plugin settings → Enable Plugin Loader. The app shows a green dot when it is on.
 
+Tested on a PS4 with the latest GoldHEN release as of November 2026.
+
 ## Use
 
 1. Install `GameLanguage-v….pkg` from the [latest release](https://github.com/Jorditomasg/ps4-game-language/releases/latest).
