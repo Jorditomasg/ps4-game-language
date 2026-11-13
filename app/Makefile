@@ -8,7 +8,7 @@ TOOLCHAIN := $(OO_PS4_TOOLCHAIN)
 TOOLS     := $(TOOLCHAIN)/bin/linux
 SAMPLE    := $(TOOLCHAIN)/samples/hello_world
 BUILD     := build
-SRCS      := $(wildcard source/*.c) ../common/langcfg.c ../common/plugins_ini.c ../common/sfo.c
+SRCS      := $(wildcard source/*.c) ../common/langcfg.c ../common/plugins_ini.c
 OBJS      := $(patsubst %.c,$(BUILD)/%.o,$(notdir $(SRCS)))
 vpath %.c source ../common
 

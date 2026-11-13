@@ -1,6 +1,7 @@
 // Game Language plugin: reports a per-game system language (e.g. es-419 instead of es-ES).
 
 #include <Common.h>
+#include <stdbool.h> // orbis/SystemService.h uses bool without including it
 #include <orbis/SystemService.h>
 
 #include "langcfg.h"
@@ -18,7 +19,7 @@ attr_public uint32_t g_pluginVersion = 0x00000100; // 1.00
 static int32_t g_lang;
 static int g_hooked;
 static langcfg g_cfg;
-static char g_text[64 * 1024];
+static char g_text[4096];
 
 HOOK_INIT(sceSystemServiceParamGetInt);
 
@@ -57,7 +58,7 @@ int32_t attr_public plugin_load(int32_t argc, const char *argv[]) {
         langcfg_parse(&g_cfg, g_text);
     }
 
-    g_lang = langcfg_resolve(&g_cfg, info.titleid, sys_lang, info.contentid);
+    g_lang = langcfg_resolve(&g_cfg, region_of(info.contentid), sys_lang);
     klog("[game_language] %s (%s): %s -> %s\n", info.titleid, info.contentid, lang_code(sys_lang),
          lang_code(g_lang));
     if (g_lang == sys_lang) return 0;

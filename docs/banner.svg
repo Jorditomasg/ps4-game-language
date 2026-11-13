@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="Game Language: choose the language of each PS4 game">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="Game Language: choose the language of PS4 games by region">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0b1a3a"/>
@@ -18,7 +18,7 @@
   </g>
   <g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
     <text x="72" y="140" font-size="88" font-weight="700" fill="#ffffff">Game <tspan fill="url(#gold)">Language</tspan></text>
-    <text x="76" y="190" font-size="28" fill="#c9d6f2">Choose the language of each PS4 game · GoldHEN</text>
+    <text x="76" y="190" font-size="28" fill="#c9d6f2">Choose the language of PS4 games by region · GoldHEN</text>
     <g font-size="22" font-weight="600">
       <rect x="76" y="226" width="196" height="48" rx="24" fill="#ffffff" fill-opacity="0.12"/>
       <text x="174" y="257" text-anchor="middle" fill="#ffffff">es-ES ⇄ es-419</text>
