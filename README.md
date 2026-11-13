@@ -10,7 +10,7 @@ Choose the language PS4 games start in, by the game's region. Needs [GoldHEN](ht
 
 PS4 games from Europe usually include *Español (España)* and games from America *Español (Latinoamérica)*. If your console uses the other one, the game starts in English. Game Language fixes that.
 
-1. Install `GameLanguage.pkg` from the [latest release](https://github.com/Jorditomasg/ps4-game-language/releases/latest).
+1. Install `GameLanguage-v….pkg` from the [latest release](https://github.com/Jorditomasg/ps4-game-language/releases/latest).
 2. Open **Game Language**. It installs its GoldHEN plugin by itself.
 3. Choose a language for each region: **Automatic**, **System language** or any language. Your system language is shown in green.
 
@@ -22,7 +22,7 @@ Elige el idioma con el que arrancan los juegos de PS4 según la región del jueg
 
 Los juegos europeos suelen traer *Español (España)* y los americanos *Español (Latinoamérica)*. Si la consola está en el otro, el juego arranca en inglés. Game Language lo soluciona.
 
-1. Instala `GameLanguage.pkg` de la [última versión](https://github.com/Jorditomasg/ps4-game-language/releases/latest).
+1. Instala `GameLanguage-v….pkg` de la [última versión](https://github.com/Jorditomasg/ps4-game-language/releases/latest).
 2. Abre **Game Language**. Instala su plugin de GoldHEN automáticamente.
 3. Elige un idioma para cada región: **Automático**, **Idioma del sistema** o cualquier idioma. El idioma del sistema sale en verde.
 

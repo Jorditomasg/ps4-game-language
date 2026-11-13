@@ -138,7 +138,8 @@ static void draw_row(int region, int y) {
 
 static void draw(void) {
     gfx_rect(0, 0, SCREEN_W, SCREEN_H, COLOR_BG);
-    gfx_text(&g_title_font, 110, 48, COLOR_TEXT, "Game Language", 0);
+    int title_w = gfx_text(&g_title_font, 110, 48, COLOR_TEXT, "Game Language", 0);
+    gfx_text(&g_small_font, 110 + title_w + 24, 82, COLOR_DIM, "v" APP_VERSION, 0);
     int x = 114 + gfx_text(&g_small_font, 114, 140, COLOR_DIM, t(T_SYSTEM_PREFIX), 0);
     gfx_text(&g_small_font, x, 140, COLOR_SYSTEM, LANG_NAMES[g_sys_lang], 0);
 

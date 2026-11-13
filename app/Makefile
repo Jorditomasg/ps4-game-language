@@ -14,7 +14,8 @@ vpath %.c source ../common
 
 LIBS    := -lc -lkernel -lSceVideoOut -lScePad -lSceUserService -lSceSystemService -lSceSysmodule
 CFLAGS  := --target=x86_64-pc-freebsd12-elf -fPIC -funwind-tables -c -Wall -O2 \
-           -isysroot $(TOOLCHAIN) -isystem $(TOOLCHAIN)/include -I../common -Ithird_party
+           -isysroot $(TOOLCHAIN) -isystem $(TOOLCHAIN)/include -I../common -Ithird_party \
+           -DAPP_VERSION='"$(VERSION)"'
 LDFLAGS := -m elf_x86_64 -pie --script $(TOOLCHAIN)/link.x --eh-frame-hdr -L$(TOOLCHAIN)/lib $(LIBS) \
            $(TOOLCHAIN)/lib/crt1.o
 
@@ -22,7 +23,10 @@ PKG_FILES := eboot.bin sce_sys/param.sfo sce_sys/icon0.png sce_sys/about/right.s
              sce_module/libc.prx sce_module/libSceFios2.prx assets/game_language.prx \
              assets/fonts/NotoSans-Regular.ttf assets/fonts/NotoSans-SemiBold.ttf
 
-.PHONY: all clean
+.PHONY: all clean version
+
+version:
+	@echo $(VERSION)
 
 all: $(CONTENT_ID).pkg
 

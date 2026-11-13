@@ -43,7 +43,7 @@ jobs:
       - name: Collect files
         run: |
           mkdir dist
-          cp app/IV0000-GLNG00001_00-GAMELANGUAGE0000.pkg dist/GameLanguage.pkg
+          cp app/IV0000-GLNG00001_00-GAMELANGUAGE0000.pkg "dist/GameLanguage-v$(make -s --no-print-directory -C app version).pkg"
           cp plugin/bin/game_language.prx dist/
 
       - uses: actions/upload-artifact@v4
