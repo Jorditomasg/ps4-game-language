@@ -89,7 +89,18 @@ static void test_plugins_ini(void) {
     assert(plugins_ini_add("", e, out, 8) == -1);
 }
 
+static void test_ini_get_bool(void) {
+    const char *key = "PluginLoader_Enabled";
+    assert(ini_get_bool("[Settings]\r\npluginloader_enabled = 1\r\n", key) == 1);
+    assert(ini_get_bool("PluginLoader_Enabled=True", key) == 1);
+    assert(ini_get_bool("PluginLoader_Enabled=0\n", key) == 0);
+    assert(ini_get_bool("PluginLoader_Enabled=false\n", key) == 0);
+    assert(ini_get_bool("PluginLoader_EnabledX=1\nFtp=1\n", key) == -1);
+    assert(ini_get_bool("", key) == -1);
+}
+
 int main(void) {
+    test_ini_get_bool();
     test_codes();
     test_resolve();
     test_format_round_trip();

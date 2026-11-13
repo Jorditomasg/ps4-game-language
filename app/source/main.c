@@ -19,6 +19,7 @@
 #define PRX_DST "/data/GoldHEN/plugins/game_language.prx"
 #define PLUGINS_INI "/data/GoldHEN/plugins.ini"
 #define CONFIG "/data/GoldHEN/game_language.ini"
+#define GOLDHEN_CONFIG "/data/GoldHEN/config.ini"
 
 #define ROW_TOP 230
 #define ROW_H 90
@@ -29,10 +30,11 @@
 #define COLOR_SYSTEM 0x6FE3B4
 #define COLOR_TEXT 0xFFFFFF
 #define COLOR_DIM 0x8FA3C7
+#define COLOR_ERROR 0xF0605D
 
 enum {
     T_SYSTEM_PREFIX, T_AUTO, T_SYSTEM_LANG, T_SYSTEM_TAG, T_HELP, T_PLUGIN_OK, T_PLUGIN_INSTALLED, T_PLUGIN_FAIL,
-    T_PACKAGE_BROKEN, T_SAVED, T_SAVE_FAIL,
+    T_PACKAGE_BROKEN, T_SAVED, T_SAVE_FAIL, T_LOADER_ON, T_LOADER_OFF,
     T_REGION, // + region
     T_COUNT = T_REGION + REGION_COUNT
 };
@@ -42,13 +44,16 @@ static const char *const TEXT[2][T_COUNT] = {
      "D-pad: choose region and language     Square: automatic     Circle: exit", "Plugin ready.",
      "Plugin installed. Restart any game that is open.", "Could not write to /data/GoldHEN. Is GoldHEN running?",
      "The package is incomplete: reinstall it.", "Saved. It applies the next time a game starts.",
-     "Could not save " CONFIG ".",
+     "Could not save " CONFIG ".", "GoldHEN plugin loader: on",
+     "GoldHEN plugin loader: off. Turn it on in GoldHEN settings > Plugin settings.",
      "European games", "American games", "Japanese games", "Asian games", "Games from other regions"},
     {"Idioma del sistema: ", "Automático", "Idioma del sistema", "(sistema)",
      "Cruceta: elegir región e idioma     Cuadrado: automático     Círculo: salir", "Plugin listo.",
      "Plugin instalado. Reinicia los juegos que tengas abiertos.",
      "No se pudo escribir en /data/GoldHEN. ¿Está GoldHEN activo?", "El paquete está incompleto: reinstálalo.",
      "Guardado. Se aplica la próxima vez que abras un juego.", "No se pudo guardar " CONFIG ".",
+     "Cargador de plugins de GoldHEN: activado",
+     "Cargador de plugins de GoldHEN: desactivado. Actívalo en Ajustes de GoldHEN > Plugin settings.",
      "Juegos de Europa", "Juegos de América", "Juegos de Japón", "Juegos de Asia", "Juegos de otras regiones"},
 };
 
@@ -144,6 +149,13 @@ static void draw(void) {
     gfx_text(&g_small_font, x, 140, COLOR_SYSTEM, LANG_NAMES[g_sys_lang], 0);
 
     for (int r = 0; r < REGION_COUNT; r++) draw_row(r, ROW_TOP + r * ROW_H);
+
+    // Read on every redraw so toggling it in GoldHEN shows up without reopening the app.
+    char *goldhen = read_file(GOLDHEN_CONFIG, NULL);
+    int loader_on = goldhen && ini_get_bool(goldhen, "PluginLoader_Enabled") == 1;
+    free(goldhen);
+    gfx_circle(122, 897, 10, loader_on ? COLOR_SYSTEM : COLOR_ERROR);
+    gfx_text(&g_small_font, 144, 880, loader_on ? COLOR_DIM : COLOR_ERROR, t(loader_on ? T_LOADER_ON : T_LOADER_OFF), 0);
 
     gfx_rect(100, 948, 1720, 2, COLOR_ROW);
     gfx_text(&g_small_font, 110, 966, COLOR_ACCENT, t(g_status), 0);

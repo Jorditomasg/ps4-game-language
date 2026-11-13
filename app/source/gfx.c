@@ -66,6 +66,12 @@ void gfx_rect(int x, int y, int w, int h, uint32_t rgb) {
         for (int px = x0; px < x1; px++) g_back[py * SCREEN_W + px] = 0xFF000000 | rgb;
 }
 
+void gfx_circle(int cx, int cy, int r, uint32_t rgb) {
+    for (int dy = -r; dy <= r; dy++)
+        for (int dx = -r; dx <= r; dx++)
+            if (dx * dx + dy * dy <= r * r) gfx_rect(cx + dx, cy + dy, 1, 1, rgb);
+}
+
 static uint32_t mix(uint32_t dst, uint32_t src, uint32_t alpha) {
     uint32_t out = 0xFF000000;
     for (int shift = 0; shift <= 16; shift += 8) {
