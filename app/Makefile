@@ -25,9 +25,6 @@ PKG_FILES := eboot.bin sce_sys/param.sfo sce_sys/icon0.png sce_sys/about/right.s
 
 .PHONY: all clean version
 
-version:
-	@echo $(VERSION)
-
 all: $(CONTENT_ID).pkg
 
 $(CONTENT_ID).pkg: pkg.gp4
@@ -71,3 +68,6 @@ sce_sys/param.sfo: Makefile
 
 clean:
 	rm -rf $(BUILD) eboot.bin pkg.gp4 *.pkg sce_sys/param.sfo sce_sys/about sce_module assets/game_language.prx
+
+version:
+	@echo $(VERSION)
