@@ -62,10 +62,10 @@ static void test_format_round_trip(void) {
     assert(langcfg_set(&cfg, "CUSA4", CHOICE_DEFAULT) == 0);
     assert(langcfg_set(&cfg, "CUSA5", CHOICE_DEFAULT) == 0);
 
-    char text[1024];
+    char text[1024], small[10];
     assert(langcfg_format(&cfg, text, sizeof text) > 0);
     assert(strstr(text, "CUSA4") == NULL);
-    assert(langcfg_format(&cfg, text, 10) == -1);
+    assert(langcfg_format(&cfg, small, sizeof small) == -1);
 
     langcfg_init(&cfg);
     langcfg_parse(&cfg, text);
